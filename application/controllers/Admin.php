@@ -34,6 +34,8 @@ class Admin extends CI_Controller{
 	}
 
 
+
+
 	public function edit($id=null)
 	{
 		
@@ -54,8 +56,8 @@ class Admin extends CI_Controller{
 			  	//清空post 并刷新当前页面
 			  	$content=$this->input->post("content")==null;
 
-			  	echo "<script language=JavaScript> location.replace(location.href);</script>";
-
+			  	$this->load->helper('js');
+                refresh();
 			  }
 
 			$this->load->view('admin/admin_header');
@@ -64,8 +66,11 @@ class Admin extends CI_Controller{
 			}
 			else //如果没有接参数，显示文章列表
 			{
-					$data['rows']=$this->Content_model->getRowsContents(20);
-					$this->load->view('admin/admin_header');
+					$data['rows']=$this->Content_model->getRowsContents(1,5);
+
+
+
+                    $this->load->view('admin/admin_header');
 					$this->load->view('admin/admin_sidebar');
 					$this->load->view('admin/edit',$data);
 			}
@@ -78,8 +83,8 @@ class Admin extends CI_Controller{
 		if ($id!=null) //如果edit后面接了参数,进入编辑页面
 			{
 				$this->Content_model->delRowContents($id);
-				echo "删除成功";
-				echo "<script>window.location.href='../edit';</script>";//跳转回编辑页面
+                $this->load->helper('js');
+                headto('../edit');
 
 
 			}

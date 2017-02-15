@@ -24,32 +24,48 @@ class Content_model extends CI_Model {
     }
 
 
-        public function getRowTitle($id)
-    {
-         
-        $this->db->select('title');
-        $this->db->from('content');
-        $this->db->where('id', $id);
-        $query = $this->db->get();
-         
-        return $query->row()->title;
-
-    
-    }
-
-
-    public function getRowsContents($num=5)
+/*    public function getRowsContents($num=5)
 
     {
          
         $this->db->select('content.*');
         $this->db->from('content');
-        $this->db->order_by('datetime','DESC');
+        $this->db->order_by('id','DESC');
 
 
         $query = $this->db->limit($num)->get();
          
         return $query->result_array();
+
+    }*/
+
+
+    public function getRowsContents($pages,$limit)
+
+    {
+        $offset=($pages-1)*$limit;
+
+        $this->db->select('*');
+        $this->db->from('content');
+        $this->db->order_by('id','DESC');
+
+
+
+        $query = $this->db->limit($limit,$offset)->get();
+
+        return $query->result_array();
+
+    }
+
+
+    public function getRowsNum()
+    {
+        $this->db->select('id');
+        $this->db->from('content');
+
+        return $this->db->count_all_results();
+
+
 
     }
 

@@ -8,7 +8,7 @@ class Login extends CI_Controller{
 			$this->load->model('Content_model');
 
 		}
-	
+
 
 
 	public function index()
@@ -16,6 +16,7 @@ class Login extends CI_Controller{
 
          $account = $this->input->post('email');
          $password = $this->input->post('password');
+
 
 
 
