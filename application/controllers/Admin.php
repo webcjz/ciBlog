@@ -1,5 +1,5 @@
 <?php
-class Admin extends CI_Controller{
+class Admin extends MY_Controller{
 
 		public function __construct()
 		{
@@ -14,23 +14,15 @@ class Admin extends CI_Controller{
 	public function index()
 	{
 
+
+
+
 			$data['sitename']=$this->Content_model->getSiteInfo()->sitename;
 
-
-            if ($this->session->iflogin===0) {
-            	//登录成功
 
             	$this->load->view('admin/admin_header');
 				$this->load->view('admin/admin_sidebar');
                  $this->load->view('admin',$data);
-             }
-                 else{
-
-                    header('Location: http://localhost/ci/login');
-
-
-            }
-		
 	}
 
 
@@ -51,8 +43,10 @@ class Admin extends CI_Controller{
 
 			if($this->input->post("content")!=null)
 			  {
+			  	$title=$this->input->post("title");
+			  	$writer=$this->input->post("writer");
 			  	$content=$this->input->post("content");
-			  	$this->Content_model->updateRowContents($id,$content);
+			  	$this->Content_model->updateRowContents($id,$title,$writer,$content);
 			  	//清空post 并刷新当前页面
 			  	$content=$this->input->post("content")==null;
 

@@ -70,10 +70,14 @@ class Content_model extends CI_Model {
     }
 
 
-    public function updateRowContents($id,$content)
+    public function updateRowContents($id,$title,$writer,$content)
     {
          
             $data = array(
+
+
+                    'title' => htmlspecialchars($title),
+                    'writer' => htmlspecialchars($writer),
                     'content' => htmlspecialchars($content),
             );
 
@@ -138,7 +142,7 @@ class Content_model extends CI_Model {
             $this->db->where('user.name',$account);
             $this->db->where('user.passwd',md5($password));
             $query = $this->db->get();
-            return $query->num_rows() == 0 ? null : $query->row_array();
+            return $query->num_rows() == 0 ? false : true;
            
     }
 

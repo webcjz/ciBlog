@@ -1,5 +1,7 @@
 <?php
-class Login extends CI_Controller{
+
+class Login extends CI_Controller
+{
 
 		public function __construct()
 		{
@@ -13,29 +15,20 @@ class Login extends CI_Controller{
 
 	public function index()
 	{
-
-         $account = $this->input->post('email');
-         $password = $this->input->post('password');
-
+	        isset($_POST['email'])?$email=$_POST['email']:$email=null;
+            isset($_POST['password'])?$password=$_POST['password']:$password=null;
 
 
+            if($this->Content_model->checkLogin($email,$password)){
 
-            if($this->Content_model->checkLogin($account,$password)===null){
-
-                $this->session->iflogin==1;//失败session
+                $_SESSION['iflogin']=true; //在这里给用户发一个成功session
+                header('Location: http://localhost/ci/admin');
             }
-            else{ 
-                $this->session->iflogin=0;//在这里给用户发一个成功session 
-                
-            header('Location: http://localhost/ci/admin');
+            else{
+                $_SESSION['iflogin']=false;
+            }
 
-               
-            } 
-       
-
-
-
-        $this->load->view('login.php'); 
+        $this->load->view('login.php');
 
 
 	}
@@ -43,7 +36,7 @@ class Login extends CI_Controller{
     public function logout()
     {
         session_destroy();
-        header("Location: http://localhost/ci/admin");
+        header("Location: http://localhost/ci/login");
     }
 
 
