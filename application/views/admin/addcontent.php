@@ -8,7 +8,6 @@
             <label for="name"><h2>修改文章</h2></label>
 
             <p>标题</p><textarea name="title" class="form-control" rows="1"></textarea>
-             <p>作者</p><textarea name="writer" class="form-control" rows="1"></textarea>
 
 
             <p>内容</p><textarea name="content" class="form-control" rows="15"></textarea>

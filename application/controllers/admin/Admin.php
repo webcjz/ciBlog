@@ -1,28 +1,23 @@
 <?php
 class Admin extends MY_Controller{
 
-		public function __construct()
+    public function __construct()
 		{
 			parent::__construct();
 			$this->load->library('session');
 			$this->load->model('Content_model');
-
+            $this->load->helper('js');
 		}
 	
 
 
 	public function index()
 	{
-
-
-
-
-			$data['sitename']=$this->Content_model->getSiteInfo()->sitename;
-
+                $data['sitename']=$this->Content_model->getSiteInfo()->sitename;
 
             	$this->load->view('admin/admin_header');
 				$this->load->view('admin/admin_sidebar');
-                 $this->load->view('admin',$data);
+                $this->load->view('admin',$data);
 	}
 
 
@@ -47,10 +42,8 @@ class Admin extends MY_Controller{
 			  	$writer=$this->input->post("writer");
 			  	$content=$this->input->post("content");
 			  	$this->Content_model->updateRowContents($id,$title,$writer,$content);
-			  	//清空post 并刷新当前页面
-			  	$content=$this->input->post("content")==null;
 
-			  	$this->load->helper('js');
+			  	$content=$this->input->post("content")==null;//清空post 并刷新当前页面
                 refresh();
 			  }
 
@@ -60,7 +53,7 @@ class Admin extends MY_Controller{
 			}
 			else //如果没有接参数，显示文章列表
 			{
-					$data['rows']=$this->Content_model->getRowsContents(1,5);
+					$data['rows']=$this->Content_model->getRowsContents(1,20);
 
 
 
@@ -73,11 +66,10 @@ class Admin extends MY_Controller{
 
 		public function del($id=null)
 	{
-		
 		if ($id!=null) //如果edit后面接了参数,进入编辑页面
 			{
 				$this->Content_model->delRowContents($id);
-                $this->load->helper('js');
+
                 headto('../edit');
 
 
@@ -85,34 +77,24 @@ class Admin extends MY_Controller{
 			else{
 				echo "您访问出错";
 			}
-
 	}
 
 
 
 		public function add()
 	{
-
 		$title=$this->input->post("title");
 		$content=$this->input->post("content");
 		$writer=$this->input->post("writer");
 
 		if($content!=null){//如果有东西，就插入数据库
-
 		$this->Content_model->addRowContents($title,$content,$writer);
-		echo "发表成功";
-
-		echo "<script>window.location.href='edit';</script>";//跳转回编辑页面
-
+		headto('edit');
 		}
-
-
-
 
 		$this->load->view('admin/admin_header');
 		$this->load->view('admin/admin_sidebar');
 		$this->load->view('admin/addcontent.php');
-
 	}
 
 
@@ -120,9 +102,12 @@ class Admin extends MY_Controller{
 		public function pagesEdit()
 	{
 
+        $data['rows']=$this->Content_model->getRowsPages(1,20);
+
+
 		$this->load->view('admin/admin_header');
 		$this->load->view('admin/admin_sidebar');
-		$this->load->view('admin/pagesedit');
+		$this->load->view('admin/pagesedit',$data);
 
 	}
 

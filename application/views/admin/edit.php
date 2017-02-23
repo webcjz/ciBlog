@@ -29,8 +29,8 @@
             <td><?php echo $value['title']?></td>
             <td><?php echo $value['writer']?></td>
             <td><?php echo $value['datetime']?></td>
-            <td><a href="http://localhost/ci/admin/edit/<?php echo $value['id']?>">编辑</a></td>
-            <td><a href="http://localhost/ci/admin/del/<?php echo $value['id']?>">删除</a></td>
+            <td><a href="edit/<?php echo $value['id']?>">编辑</a></td>
+            <td><a href="del/<?php echo $value['id']?>">删除</a></td>
 
         </tr>
       

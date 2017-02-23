@@ -22,7 +22,7 @@ class Blog extends CI_Controller {
     public function page($page=null)
     {
             $limit=5;
-            $total_rows=($this->Content_model->getRowsNum())/$limit;
+            $total_rows=($this->Content_model->getRowsNum('content'))/$limit;
 
             if($page==null){
                 $data['rows']=$this->Content_model->getRowsContents(1,$limit);

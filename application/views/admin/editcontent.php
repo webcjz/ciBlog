@@ -6,7 +6,6 @@
 
             <p>标题</p><textarea name="title" class="form-control" rows="1"><?php echo $title?></textarea>
 
-            <p>作者</p><textarea name="writer" class="form-control" rows="1"><?php echo $writer?></textarea>
             <p>内容</p><textarea name="content" class="form-control" rows="15"><?php echo $content?></textarea>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>

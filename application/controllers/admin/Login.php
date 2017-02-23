@@ -21,11 +21,8 @@ class Login extends CI_Controller
 
             if($this->Content_model->checkLogin($email,$password)){
 
-                $_SESSION['iflogin']=true; //在这里给用户发一个成功session
+                $_SESSION['iflogin']=1; //在这里给用户发一个成功session
                 header('Location: http://localhost/ci/admin');
-            }
-            else{
-                $_SESSION['iflogin']=false;
             }
 
         $this->load->view('login.php');
@@ -35,7 +32,7 @@ class Login extends CI_Controller
 
     public function logout()
     {
-        session_destroy();
+        $this->session->sess_destroy();
         header("Location: http://localhost/ci/login");
     }
 
