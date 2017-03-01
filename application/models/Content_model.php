@@ -68,7 +68,11 @@ class Content_model extends CI_Model {
         return $this->db->count_all_results();
     }
 
+<<<<<<< HEAD
     //改文章内容
+=======
+
+>>>>>>> 379cad56be7ac50b3d01b61879bc36ecaeedde26
     public function updateRowContents($id,$title,$writer,$content)
     {
          
