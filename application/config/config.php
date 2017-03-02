@@ -378,8 +378,8 @@ $config['encryption_key'] = 'asd12213123';
 |
 */
 $config['sess_driver'] = 'redis';
-$config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200;
+$config['sess_cookie_name'] = 'blog_session';
+$config['sess_expiration'] = 3600;
 $config['sess_save_path'] = 'tcp://localhost:6379';
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;

@@ -1,4 +1,38 @@
 
+
+<div class="col-sm-8 col-md-8 col-md-offset-2 main">
+
+
+
+    <div class="table-responsive">
+        <table class="table">
+
+
+            <caption><h2>修改文章</h2></caption>
+            <thead>
+            <tr>
+                <th>文章</th>
+                <th>编辑</th>
+                <th>删除</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <?php foreach ($rows as $value): ?>
+                <tr>
+                    <td><?php echo $value['id']?></td>
+                    <td><?php echo $value['sitename']?></td>
+                    <td><?php echo $value['url']?></td>
+                </tr>
+
+            <?php endforeach ?>
+
+            </tbody>
+        </table>
+    </div>
+
+
+
       </div>
     </div>
 

@@ -8,13 +8,11 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
         $this->load->library('session');
+        $this->load->helper('js');
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 379cad56be7ac50b3d01b61879bc36ecaeedde26
-        if (!$_SESSION['iflogin']) {
-            header('Location: http://localhost/ci/login');
+        if (empty($_SESSION['iflogin'])) {
+            headto('login');
             
         }
 

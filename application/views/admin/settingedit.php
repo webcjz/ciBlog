@@ -1,4 +1,28 @@
 
+
+<div class="col-sm-8 col-md-8 col-md-offset-2 main">
+
+    <form method="post" role="form">
+        <div class="form-group">
+            <label for="name"><h2>修改站点信息</h2></label>
+
+            <p>站点名字</p><textarea name="sitename" class="form-control" rows="1"><?php echo $row->sitename; ?></textarea>
+
+
+            <p>描述站点</p><textarea name="description" class="form-control" rows="15"><?php echo $row->description; ?></textarea>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+
+        </div>
+    </form>
+
+
+</div>
+
+
+
+
+
       </div>
     </div>
 

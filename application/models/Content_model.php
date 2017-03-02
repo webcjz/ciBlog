@@ -68,17 +68,11 @@ class Content_model extends CI_Model {
         return $this->db->count_all_results();
     }
 
-<<<<<<< HEAD
     //改文章内容
-=======
-
->>>>>>> 379cad56be7ac50b3d01b61879bc36ecaeedde26
     public function updateRowContents($id,$title,$writer,$content)
     {
          
             $data = array(
-
-
                     'title' => htmlspecialchars($title),
                     'writer' => htmlspecialchars($writer),
                     'content' => htmlspecialchars($content),
@@ -133,8 +127,55 @@ class Content_model extends CI_Model {
         $query=$this->db->get();
         return $query->row();//返回一行数据且是对象
 
+    }
+
+    //改站点信息
+    public function updateSiteInfo($sitename,$description)
+    {
+
+        $data = array(
+            'sitename' => htmlspecialchars($sitename),
+            'description' => htmlspecialchars($description)
+        );
+        $this->db->update('site',$data);
 
     }
+
+    //查链接信息
+    public function getRowsLinks()
+    {
+
+        $this->db->select('id,sitename,url');
+        $this->db->from('links');
+        $query=$this->db->get();
+        return $query->result_array();
+    }
+
+    //查链接信息根据ID
+    public function getRowLinks($id)
+    {
+
+        $this->db->where('id',$id);
+        $this->db->from('links');
+        $query=$this->db->get();
+        return $query->row();
+    }
+    //更新链接信息根据ID
+    public function updateRowLinks($id,$sitename,$description)
+    {
+        $data = array(
+            'sitename' => htmlspecialchars($sitename),
+            'description' => htmlspecialchars($description)
+        );
+        $this->db->where('id',$id);
+
+        $this->db->update('links',$data);
+
+
+
+    }
+
+
 
         //验证登录
         public function checkLogin($account,$password)

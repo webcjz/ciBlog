@@ -4,9 +4,9 @@
           <div class="form-group">
             <label for="name"><h2>修改文章</h2></label>
 
-            <p>标题</p><textarea name="title" class="form-control" rows="1"><?php echo $title?></textarea>
+            <p>标题</p><textarea name="title" class="form-control" rows="1"><?php echo $row->title;?></textarea>
 
-            <p>内容</p><textarea name="content" class="form-control" rows="15"><?php echo $content?></textarea>
+            <p>内容</p><textarea name="content" class="form-control" rows="15"><?php echo $row->content;?></textarea>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
 
@@ -17,6 +17,7 @@
       </div>
 
     </div>
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

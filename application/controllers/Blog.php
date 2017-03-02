@@ -35,6 +35,8 @@ class Blog extends CI_Controller {
             $data['sitename']=$this->Content_model->getSiteInfo()->sitename;
             $data['description']=$this->Content_model->getSiteInfo()->description;
             $data['base_url'] = $base_url= $this->config->item('base_url');
+            $data['links']=$this->Content_model->getRowsLinks();
+
 
 
         //开始分页

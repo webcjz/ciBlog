@@ -51,8 +51,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'blog';
 
-//$route['admin/(:any)'] = 'admin/admin';
-//$route['login/(:any)'] = 'admin/login';
+
+$route['admin'] = 'admin/admin/index';
+$route['login'] = 'admin/login/index';
+$route['admin/(:any)'] = 'admin/admin/$1';
+$route['admin/(:any)/(:any)'] = 'admin/admin/$1/$2';
+$route['login/(:any)'] = 'admin/login/$1';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

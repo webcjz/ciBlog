@@ -21,8 +21,6 @@ class Admin extends MY_Controller{
 	}
 
 
-
-
 	public function edit($id=null)
 	{
 		
@@ -31,10 +29,7 @@ class Admin extends MY_Controller{
 
 		if ($id!=null) //如果edit后面接了参数,进入编辑页面
 			{
-			$data['content']=$this->Content_model->getRowContents($id)->content;
-			$data['title']=$this->Content_model->getRowContents($id)->title;
-			$data['writer']=$this->Content_model->getRowContents($id)->writer;
-
+			$data['row']=$this->Content_model->getRowContents($id);
 
 			if($this->input->post("content")!=null)
 			  {
@@ -114,9 +109,12 @@ class Admin extends MY_Controller{
 
 		public function linksEdit()
 	{
+
+	    $data['rows']=$this->Content_model->getRowsLinks();
+
 		$this->load->view('admin/admin_header');
 		$this->load->view('admin/admin_sidebar');
-		$this->load->view('admin/linksedit');
+		$this->load->view('admin/linksedit',$data);
 
 	}
 
@@ -134,9 +132,19 @@ class Admin extends MY_Controller{
 		public function settingEdit()
 	{
 
+	    if(!empty($_POST['sitename'])) {
+            $sitename = $_POST['sitename'];
+            $description = $_POST['description'];
+
+            $this->Content_model->updateSiteInfo($sitename, $description);
+        }
+
+	    $row['row']=$this->Content_model->getSiteInfo();
+
+
 		$this->load->view('admin/admin_header');
 		$this->load->view('admin/admin_sidebar');
-		$this->load->view('admin/settingedit');
+		$this->load->view('admin/settingedit',$row);
 
 	}
 
